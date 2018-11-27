@@ -173,5 +173,7 @@ extern unsigned int _s_comp_print;
 extern unsigned int _s_recv_flush;
 extern int _s_verify_counter;
 extern int guess_agent_group;
+extern unsigned receive_chunk;
+extern int buffer_relax;
 
 #endif /* __LOGREMOTE_H */
