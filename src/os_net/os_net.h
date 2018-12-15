@@ -120,4 +120,7 @@ uint32_t wnet_order(uint32_t value);
 /* Set the maximum buffer size for the socket */
 int OS_SetSocketSize(int sock, int mode, int max_msg_size);
 
+// Wrapper for select()
+int wnet_select(int sock, int timeout);
+
 #endif /* __OS_NET_H */

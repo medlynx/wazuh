@@ -807,3 +807,14 @@ int OS_RecvSecureClusterTCP(int sock, char * ret, size_t length) {
     /* Read the payload */
     return recv(sock, ret, size, MSG_WAITALL);
 }
+
+// Wrapper for select()
+int wnet_select(int sock, int timeout) {
+    fd_set fdset;
+    struct timeval fdtimeout = { timeout, 0 };
+
+    FD_ZERO(&fdset);
+    FD_SET(sock, &fdset);
+
+    return select(sock + 1, &fdset, NULL, NULL, &fdtimeout);
+}
