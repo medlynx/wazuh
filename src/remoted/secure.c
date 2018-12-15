@@ -255,10 +255,6 @@ static void HandleSecureMessage(char *buffer, int recv_b, struct sockaddr_in *pe
 
         if (*tmp_msg != '!') {
             merror(ENCFORMAT_ERROR, "(unknown)", srcip);
-
-            if (sock_client >= 0)
-                _close_sock(&keys, sock_client);
-
             return;
         }
 
@@ -283,10 +279,6 @@ static void HandleSecureMessage(char *buffer, int recv_b, struct sockaddr_in *pe
             agname[sizeof(agname) - 1] = '\0';
 
             mwarn(ENC_IP_ERROR, buffer + 1, srcip, agname);
-
-            if (sock_client >= 0)
-                _close_sock(&keys, sock_client);
-
             return;
         }
     } else {
@@ -296,10 +288,6 @@ static void HandleSecureMessage(char *buffer, int recv_b, struct sockaddr_in *pe
         if (agentid < 0) {
             key_unlock();
             mwarn(DENYIP_WARN, srcip);
-
-            if (sock_client >= 0)
-                _close_sock(&keys, sock_client);
-
             return;
         }
         tmp_msg = buffer;
