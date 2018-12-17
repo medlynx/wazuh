@@ -134,7 +134,13 @@ int OS_CleanMSG(char *msg, Eventinfo *lf)
     ) {
 
         lf->dec_timestamp = lf->full_log + loglen;
-        lf->log[-1] = '\0';
+
+        if(lf->log[-1] == ' '){
+            lf->log[-1] = '\0';
+        } else {
+            lf->log[0] = '\0';
+            lf->log++;
+        }
 
         /* Check for an extra space in here */
         if (*lf->log == ' ') {
